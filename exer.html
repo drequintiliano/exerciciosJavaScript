@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Exercicios JS</title>
+</head>
+<body>
+  <h2>Digite o número do seu cartão:</h2>
+  <input type="text" data-js="card">
+  <button type="button">Identificar</button> <br><br>
+  <label>Bandeira: </label>
+  <div data-js="result"></div>
+ 
+  <script>
+    document.querySelector( 'button' )
+      .addEventListener( 'click', handleClick, false );
+    
+    function handleClick() {
+      let card = document.querySelector( '[data-js="card"]').value;
+      
+      document.querySelector( '[data-js="result"]' ).innerHTML = func(card);
+    }
+    
+    const cartoes = [
+        {
+            id: 2,
+            bandeira: 'Mastercard (2017)'
+        },
+        {
+            id: 3,
+            bandeira: 'American Express, Diners'
+        },
+        {
+            id: 4,
+            bandeira: 'Visa'
+        },
+        {
+            id: 5,
+            bandeira: 'Mastercard, Elo'
+        },
+        {
+            id: 6,
+            bandeira: 'Discover'
+        }
+    ]
+
+    function func(card) {
+        const identificaCartao = c => c.id === parseInt(card.substr(0, 1)) 
+        const bandeira = b => b.bandeira
+        const resultado = cartoes.filter(identificaCartao).reduce(bandeira) 
+        return resultado.bandeira 
+    }
+    
+
+    // function sum( number1, number2 ) {
+    //   return number1 + number2;
+    // }
+  </script>
+</body>
+</html>
